@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
+const {createRemoteJWKSet,jwtVerify} = require("jose-cjs")
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ const client = new MongoClient(uri, {
   },
 });
 
+const JWKS = createRemoteJWKSet(new URL(`${process.env.NEXT_PUBLIC_URL}/api/auth/jwks`));
+
 const verifyToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
@@ -34,20 +37,9 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const authUrl = "https://docappoint-client-a9.vercel.app/api/auth/get-session";
-    
-    const authRes = await fetch(authUrl, {
-      headers: {
-        cookie: `better-auth.session_token=${token}`
-      }
-    });
 
-    if (!authRes.ok) {
-      return res.status(401).send({ message: "Unauthorized" });
-    }
-
-    const sessionData = await authRes.json();
-    req.user = sessionData.user;
+    const { payload } = await jwtVerify(token, JWKS);
+    // console.log(payload);
     next();
     
   } catch (error) {
