@@ -81,6 +81,8 @@ async function run() {
       res.send(result);
     });
 
+   // boking id
+
     app.get("/booking/:userId", async (req, res) => {
       const { userId } = req.params;
       const result = await bookingCollection.find({ userId: userId }).toArray();
