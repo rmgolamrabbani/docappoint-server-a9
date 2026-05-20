@@ -34,7 +34,7 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const authUrl = "https://docappoint-client-a9-5nz3zs038-rmgolamrabbanis-projects.vercel.app/api/auth/get-session";
+    const authUrl = "https://docappoint-client-a9.vercel.app";
     
     const authRes = await fetch(authUrl, {
       headers: {
