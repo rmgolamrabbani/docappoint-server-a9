@@ -93,12 +93,12 @@ async function run() {
       res.send(result);
     });
 
-    // app.delete("/booking/:bookingId", async (req, res) => {
-    //   const { bookingId } = req.params;
-    //   const query = { _id: new ObjectId(bookingId) };
-    //   const result = await bookingCollection.deleteOne(query);
-    //   res.send(result);
-    // });
+    app.delete("/booking/:bookingId", async (req, res) => {
+      const { bookingId } = req.params;
+      const query = { _id: new ObjectId(bookingId) };
+      const result = await bookingCollection.deleteOne(query);
+      res.send(result);
+    });
 
     // app.patch("/booking/:bookingId", async (req, res) => {
     //   const { bookingId } = req.params;
