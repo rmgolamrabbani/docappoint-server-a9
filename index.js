@@ -100,14 +100,14 @@ async function run() {
       res.send(result);
     });
 
-    // app.patch("/booking/:bookingId", async (req, res) => {
-    //   const { bookingId } = req.params;
-    //   const updatedData = req.body;
-    //   const query = { _id: new ObjectId(bookingId) };
-    //   const updateDoc = { $set: updatedData };
-    //   const result = await bookingCollection.updateOne(query, updateDoc);
-    //   res.send(result);
-    // });
+    app.patch("/booking/:bookingId", async (req, res) => {
+      const { bookingId } = req.params;
+      const updatedData = req.body;
+      const query = { _id: new ObjectId(bookingId) };
+      const updateDoc = { $set: updatedData };
+      const result = await bookingCollection.updateOne(query, updateDoc);
+      res.send(result);
+    });
 
     await client.db("admin").command({ ping: 1 });
     console.log("MongoDB Ping Successful");
