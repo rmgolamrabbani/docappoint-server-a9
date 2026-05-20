@@ -69,23 +69,23 @@ async function run() {
       res.send(result);
     });
 
-    // app.get("/appointments/:appointmentId", verifyToken, async (req, res) => {
-    //   const { appointmentId } = req.params;
+    app.get("/appointments/:appointmentId", verifyToken, async (req, res) => {
+      const { appointmentId } = req.params;
 
-    //   if (!ObjectId.isValid(appointmentId)) {
-    //     return res.status(400).send({ message: "Invalid ID" });
-    //   }
+      if (!ObjectId.isValid(appointmentId)) {
+        return res.status(400).send({ message: "Invalid ID" });
+      }
 
-    //   const query = { _id: new ObjectId(appointmentId) };
-    //   const result = await allAppointmentsCollection.findOne(query);
-    //   res.send(result);
-    // });
+      const query = { _id: new ObjectId(appointmentId) };
+      const result = await allAppointmentsCollection.findOne(query);
+      res.send(result);
+    });
 
-    // app.get("/booking/:userId", async (req, res) => {
-    //   const { userId } = req.params;
-    //   const result = await bookingCollection.find({ userId: userId }).toArray();
-    //   res.send(result);
-    // });
+    app.get("/booking/:userId", async (req, res) => {
+      const { userId } = req.params;
+      const result = await bookingCollection.find({ userId: userId }).toArray();
+      res.send(result);
+    });
 
     // app.post("/bookings",  async (req, res) => {
     //   const booking = req.body;
