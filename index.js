@@ -34,7 +34,7 @@ const verifyToken = async (req, res, next) => {
   }
 
   try {
-    const authUrl = "http://localhost:3000/api/auth/get-session";
+    const authUrl = "https://docappoint-client-a9-5nz3zs038-rmgolamrabbanis-projects.vercel.app/api/auth/get-session";
     
     const authRes = await fetch(authUrl, {
       headers: {
@@ -57,7 +57,7 @@ const verifyToken = async (req, res, next) => {
 
 async function run() {
   try {
-    await client.connect();
+    // await client.connect();
     console.log("MongoDB Connected successfully");
 
     const db = client.db("docappoint");
@@ -111,7 +111,7 @@ async function run() {
       res.send(result);
     });
 
-    await client.db("admin").command({ ping: 1 });
+    // await client.db("admin").command({ ping: 1 });
     console.log("MongoDB Ping Successful");
 
   } catch (error) {
