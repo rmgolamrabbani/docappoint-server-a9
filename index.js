@@ -87,11 +87,11 @@ async function run() {
       res.send(result);
     });
 
-    // app.post("/bookings",  async (req, res) => {
-    //   const booking = req.body;
-    //   const result = await bookingCollection.insertOne(booking);
-    //   res.send(result);
-    // });
+    app.post("/bookings",  async (req, res) => {
+      const booking = req.body;
+      const result = await bookingCollection.insertOne(booking);
+      res.send(result);
+    });
 
     // app.delete("/booking/:bookingId", async (req, res) => {
     //   const { bookingId } = req.params;
